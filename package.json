@@ -17,34 +17,40 @@
     "token"
   ],
   "author": "shgbit development center team2",
-  "contributors":[
+  "contributors": [
     {
-      "name":"bobenut",
-      "web":"https://github.com/bobenut"
+      "name": "bobenut",
+      "web": "https://github.com/bobenut"
     },
     {
-      "name":"AlfredYan",
-      "web":"https://github.com/AlfredYan"
+      "name": "AlfredYan",
+      "web": "https://github.com/AlfredYan"
     },
     {
-      "name":"zunmaxiake",
-      "web":"https://github.com/zunmaxiake"
+      "name": "zunmaxiake",
+      "web": "https://github.com/zunmaxiake"
     },
     {
-      "name":"koroshi",
-      "web":"https://github.com/koroshi"
+      "name": "koroshi",
+      "web": "https://github.com/koroshi"
     },
     {
-      "name":"zhangfengchina",
-      "web":"https://github.com/zhangfengchina"
+      "name": "zhangfengchina",
+      "web": "https://github.com/zhangfengchina"
     },
     {
-      "name":"growingflower",
-      "web":"https://github.com/woyaoxuexi"  
+      "name": "growingflower",
+      "web": "https://github.com/woyaoxuexi"
     }
   ],
   "bugs": {
     "url": "https://github.com/gbdevcteam/node-gbunitytoken/issues"
   },
-  "homepage": "https://github.com/gbdevcteam/node-gbunitytoken#readme"
+  "homepage": "https://github.com/gbdevcteam/node-gbunitytoken#readme",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "gbunitytoken": "^0.1.1",
+    "moment": "^2.17.1",
+    "request": "^2.79.0"
+  }
 }

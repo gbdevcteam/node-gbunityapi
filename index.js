@@ -37,25 +37,33 @@ GBUnityAPI.prototype.init = function(options){
 GBUnityAPI.prototype.validateUser = function(sessionId,userId,callback){
         var timestamp = getTimeStamp();
         var publickey = this.appName + timestamp;
-        var privateKey =  this.privateKey
+        var privateKey =  this.privateKey;
         var token = gbunitytoken(publickey,privateKey);
-        var url =  this.host+'/api/contact/user/validation'+'?appName='+this.appName+'&userId='+userId+'&sessionId='+sessionId+'&timeStamp='+timestamp+'&token='+token;
+        var url =  this.host+':'+this.port+'/api/contact/user/validation'+'?appName='+this.appName+'&userId='+userId+'&sessionId='+sessionId+'&timeStamp='+timestamp+'&token='+token;
         var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);
-    })
 };
-GBUnityAPI.prototype.getUserInfo = function(){
 
+GBUnityAPI.prototype.getUserInfo = function(userId,callback){
+    var timestamp = getTimeStamp();
+    var publicKey = this.appName + timestamp;
+    var privateKey = this.privateKey;
+    var token = gbunitytoken(publicKey,privateKey);
+    var url = this.host+':'+this.port+'/api/contact/user/infomation'+'?appName='+this.appName+'&userId='+userId+'&timeStamp='+timestamp+'&token='+token;
+    var options = {url:url,json:true,method:"GET"};
+    return requestCommon(options,callback);
 };
-GBUnityAPI.prototype.getAddressBook = function(){
+
+GBUnityAPI.prototype.getAddressBook = function(callback){
         var timestamp = getTimeStamp();
         var publickey = this.appName + timestamp;
         var privateKey = this.privateKey;
         var token = gbunitytoken(publickey,privateKey);
-        var url = this.host+'/api/contact/infomation'+'?appName='+this.appName+'&timeStamp='+timestamp+"&token="+token;
+        var url = this.host+':'+this.port+'/api/contact/infomation'+'?appName='+this.appName+'&timeStamp='+timestamp+"&token="+token;
         var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);
 };
+
 GBUnityAPI.prototype.getOrganizationsOfUser = function(){
 
 };

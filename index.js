@@ -64,8 +64,14 @@ GBUnityAPI.prototype.getAddressBook = function(callback){
         return requestCommon(options,callback);
 };
 
-GBUnityAPI.prototype.getOrganizationsOfUser = function(){
-
+GBUnityAPI.prototype.getOrganizationsOfUser = function(userId,sessionId){
+        var timestamp = getTimeStamp();
+        var publickey = this.appName + timestamp;
+        var privateKey = this.privateKey;
+        var token = gbunitytoken(publickey,privateKey);
+        var url = this.host+':'+this.port+'/api/contact/orgnizationsOfUser'+'?appName='+this.appName+'&userId='+userId+"&sessionId="+sessionId+'&timeStamp='+timestamp+"&token="+token;
+        var options = {url:url,json:true,method:"GET"};
+        return requestCommon(options,callback);
 };
 GBUnityAPI.prototype.getContactersOfUser = function(){
 

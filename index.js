@@ -38,7 +38,7 @@ GBUnityAPI.prototype.validateUser = function(sessionId,userId,callback){
         var timestamp = getTimeStamp();
         var publickey = this.appName + timestamp;
         var privateKey =  this.privateKey;
-        var token = gbunitytoken(publickey,privateKey);
+        var token = gbunitytoken.parseHmacSha1Token(publickey,privateKey);
         var url =  this.host+':'+this.port+'/api/contact/user/validation'+'?appName='+this.appName+'&userId='+userId+'&sessionId='+sessionId+'&timeStamp='+timestamp+'&token='+token;
         var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);
@@ -48,7 +48,7 @@ GBUnityAPI.prototype.getUserInfo = function(sessionId,userId,callback){
         var timestamp = getTimeStamp();
         var publicKey = this.appName + timestamp;
         var privateKey = this.privateKey;
-        var token = gbunitytoken(publicKey,privateKey);
+        var token = gbunitytoken.parseHmacSha1Token(publicKey,privateKey);
         var url = this.host+':'+this.port+'/api/contact/user'+'?appName='+this.appName+'&userId='+userId+'&sessionId='+sessionId+'&timeStamp='+timestamp+'&token='+token;
         var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);
@@ -58,7 +58,7 @@ GBUnityAPI.prototype.getAddressBook = function(callback){
         var timestamp = getTimeStamp();
         var publickey = this.appName + timestamp;
         var privateKey = this.privateKey;
-        var token = gbunitytoken(publickey,privateKey);
+        var token = gbunitytoken.parseHmacSha1Token(publickey,privateKey);
         var url = this.host+':'+this.port+'/api/contact/addressBook'+'?appName='+this.appName+'&timeStamp='+timestamp+"&token="+token;
         var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);
@@ -68,7 +68,7 @@ GBUnityAPI.prototype.getOrganizationsOfUser = function(userId,sessionId,callback
         var timestamp = getTimeStamp();
         var publickey = this.appName + timestamp;
         var privateKey = this.privateKey;
-        var token = gbunitytoken(publickey,privateKey);
+        var token = gbunitytoken.parseHmacSha1Token(publickey,privateKey);
         var url = this.host+':'+this.port+'/api/contact/orgnizationsOfUser'+'?appName='+this.appName+'&userId='+userId+"&sessionId="+sessionId+'&timeStamp='+timestamp+"&token="+token;
         var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);
@@ -77,7 +77,7 @@ GBUnityAPI.prototype.getContactersOfUser = function(userId,sessionId,orgnization
         var timestamp = getTimeStamp();
         var publickey = this.appName + timestamp;
         var privateKey = this.privateKey;
-        var token = gbunitytoken(publickey,privateKey);
+        var token = gbunitytoken.parseHmacSha1Token(publickey,privateKey);
         var url = this.host+':'+this.port+'/api/contact/contactorsOfUser'+'?appName='+this.appName+'&userId='+userId+'&sessionId='+sessionId+'&orgnizationId='+orgnizationId+'&timeStamp='+timestamp+'&token='+token;
         var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);

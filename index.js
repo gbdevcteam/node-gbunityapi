@@ -73,8 +73,13 @@ GBUnityAPI.prototype.getOrganizationsOfUser = function(userId,sessionId){
         var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);
 };
-GBUnityAPI.prototype.getContactersOfUser = function(){
-
+GBUnityAPI.prototype.getContactersOfUser = function(userId,sessionId,orgnizationId){
+        var timestamp = getTimeStamp();
+        var publickey = this.appName + timestamp;
+        var privateKey = this.privateKey;
+        var token = gbunitytoken(publickey,privateKey);
+        var url = this.host+':'+this.port+'/api/contact/contactorsOfUser'+'?appName='+this.appName+'&userId='+userId+'&sessionId='+sessionId+'&orgnizationId='+orgnizationId+'&timeStamp='+timestamp+'&token='+token;
+        return requestCommon(options,callback);
 };
 
 

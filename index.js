@@ -7,7 +7,7 @@ function GBUnityAPI(){
 }
 
 var getTimeStamp = function(){
-    return moment.format("YYYYMMDDHHmmssSSS")
+    return moment.format("YYYYMMDDHHmmssSSS");
 };
 
 var requestCommon = function(options,callback){
@@ -20,11 +20,11 @@ var requestCommon = function(options,callback){
             }
             if (!error && response.statusCode == 200) {
                 if(hasCallback) return callback(null,body);
-                return resolve(body)
+                return resolve(body);
             }
-        })
-    })
-}
+        });
+    });
+};
 
 GBUnityAPI.prototype.init = function(options){
     this.host = options.host;
@@ -44,14 +44,14 @@ GBUnityAPI.prototype.validateUser = function(sessionId,userId,callback){
         return requestCommon(options,callback);
 };
 
-GBUnityAPI.prototype.getUserInfo = function(userId,callback){
-    var timestamp = getTimeStamp();
-    var publicKey = this.appName + timestamp;
-    var privateKey = this.privateKey;
-    var token = gbunitytoken(publicKey,privateKey);
-    var url = this.host+':'+this.port+'/api/contact/user/infomation'+'?appName='+this.appName+'&userId='+userId+'&timeStamp='+timestamp+'&token='+token;
-    var options = {url:url,json:true,method:"GET"};
-    return requestCommon(options,callback);
+GBUnityAPI.prototype.getUserInfo = function(sessionId,userId,callback){
+        var timestamp = getTimeStamp();
+        var publicKey = this.appName + timestamp;
+        var privateKey = this.privateKey;
+        var token = gbunitytoken(publicKey,privateKey);
+        var url = this.host+':'+this.port+'/api/contact/user'+'?appName='+this.appName+'&userId='+userId+'&sessionId='+sessionId+'&timeStamp='+timestamp+'&token='+token;
+        var options = {url:url,json:true,method:"GET"};
+        return requestCommon(options,callback);
 };
 
 GBUnityAPI.prototype.getAddressBook = function(callback){
@@ -59,12 +59,12 @@ GBUnityAPI.prototype.getAddressBook = function(callback){
         var publickey = this.appName + timestamp;
         var privateKey = this.privateKey;
         var token = gbunitytoken(publickey,privateKey);
-        var url = this.host+':'+this.port+'/api/contact/infomation'+'?appName='+this.appName+'&timeStamp='+timestamp+"&token="+token;
+        var url = this.host+':'+this.port+'/api/contact/addressBook'+'?appName='+this.appName+'&timeStamp='+timestamp+"&token="+token;
         var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);
 };
 
-GBUnityAPI.prototype.getOrganizationsOfUser = function(userId,sessionId){
+GBUnityAPI.prototype.getOrganizationsOfUser = function(userId,sessionId,callback){
         var timestamp = getTimeStamp();
         var publickey = this.appName + timestamp;
         var privateKey = this.privateKey;
@@ -73,16 +73,17 @@ GBUnityAPI.prototype.getOrganizationsOfUser = function(userId,sessionId){
         var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);
 };
-GBUnityAPI.prototype.getContactersOfUser = function(userId,sessionId,orgnizationId){
+GBUnityAPI.prototype.getContactersOfUser = function(userId,sessionId,orgnizationId,callback){
         var timestamp = getTimeStamp();
         var publickey = this.appName + timestamp;
         var privateKey = this.privateKey;
         var token = gbunitytoken(publickey,privateKey);
         var url = this.host+':'+this.port+'/api/contact/contactorsOfUser'+'?appName='+this.appName+'&userId='+userId+'&sessionId='+sessionId+'&orgnizationId='+orgnizationId+'&timeStamp='+timestamp+'&token='+token;
+        var options = {url:url,json:true,method:"GET"};
         return requestCommon(options,callback);
 };
 
 
 
-module.exports = new GBUnityAPI
+module.exports = new GBUnityAPI;
 

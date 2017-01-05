@@ -7,7 +7,7 @@ function GBUnityAPI() {
 }
 
 var getTimeStamp = function () {
-    return moment.format("YYYYMMDDHHmmssSSS");
+    return moment().format("YYYYMMDDHHmmssSSS");
 };
 
 var requestCommon = function (options, callback) {

@@ -155,4 +155,4 @@ api.getAddressBook  (fun(){}))
  }
  ```
 ##License
-gbunitysecret  is licensed under the MIT.
+gbunityapi  is licensed under the MIT.

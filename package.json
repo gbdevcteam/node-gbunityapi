@@ -1,6 +1,6 @@
 {
     "name": "gbunityapi",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A node.js module that can validate user and get info.",
     "main": "index.js",
     "scripts": {
